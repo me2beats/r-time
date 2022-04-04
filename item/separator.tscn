@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="Separator" type="Label" groups=["separator"]]
+margin_right = 1024.0
+margin_bottom = 19.0
+text = "-------------- DONE ---------------"
+valign = 1

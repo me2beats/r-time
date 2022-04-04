@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://styleboxempty.tres" type="StyleBox" id=1]
+[ext_resource path="res://lineedit_stylebox1.tres" type="StyleBox" id=2]
+[ext_resource path="res://item/remove.gd" type="Script" id=3]
+[ext_resource path="res://item/date.gd" type="Script" id=4]
+[ext_resource path="res://item/timer.gd" type="Script" id=5]
+[ext_resource path="res://alarm2.mp3" type="AudioStream" id=6]
+[ext_resource path="res://item/sound.gd" type="Script" id=7]
+
+[node name="Item" type="PanelContainer"]
+margin_right = 1024.0
+margin_bottom = 30.0
+
+[node name="Item" type="HBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 37.0
+
+[node name="Name" type="LineEdit" parent="Item"]
+margin_right = 322.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 15, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/focus = ExtResource( 2 )
+custom_styles/normal = ExtResource( 2 )
+text = "hello"
+caret_blink = true
+
+[node name="Date" type="Button" parent="Item"]
+margin_left = 326.0
+margin_right = 649.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 15, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/focus = ExtResource( 1 )
+text = "today 23:30"
+flat = true
+script = ExtResource( 4 )
+
+[node name="Sound" type="Button" parent="Item"]
+margin_left = 653.0
+margin_right = 975.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 15, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 2 )
+custom_styles/focus = ExtResource( 1 )
+custom_styles/normal = ExtResource( 2 )
+text = "res://alarm2.mp3"
+script = ExtResource( 7 )
+
+[node name="Remove" type="Button" parent="Item"]
+margin_left = 979.0
+margin_right = 1009.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 0 )
+text = "X"
+flat = true
+script = ExtResource( 3 )
+
+[node name="Control" type="Control" parent="."]
+visible = false
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 37.0
+mouse_filter = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+anchor_right = 0.767
+anchor_bottom = 1.0
+margin_top = 26.0
+margin_right = -0.279999
+mouse_filter = 1
+color = Color( 0.831373, 0.290196, 0.290196, 1 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+script = ExtResource( 5 )
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]
